@@ -16,7 +16,11 @@ in
 {
   services.printing = {
     enable = true;
-    drivers = [ cupsPrinterDriver ];
+    drivers = with pkgs; [
+      cupsPrinterDriver
+      cups-filters
+      cups-browsed
+    ];
     webInterface = true;
     startWhenNeeded = false;
   };
