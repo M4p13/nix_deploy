@@ -5,6 +5,7 @@
     [
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/host.nix
+      ./modules/printing.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
