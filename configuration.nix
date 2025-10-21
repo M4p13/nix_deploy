@@ -31,6 +31,7 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = false;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
   services.xserver.xkb = {
     layout = "ee";
     variant = "";
@@ -96,4 +97,7 @@
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
+
+  services.tailscale.enable = true;
+  networking.firewall.checkReversePath = "loose";
 }
