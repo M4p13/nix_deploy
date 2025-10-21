@@ -52,6 +52,11 @@
   
   users.mutableUsers = false;
 
+  users.users.kasutaja = {
+    isNormalUser = true;
+    description = "kasutaja";
+    hashedPassword = "$y$j9T$iWI/Xzoi8ef7GD5SeUuZu.$zPR4fIftnM9s/PCTPhk9KjbTNCD.ciGwedSZ6AFhw1A";
+  };
   users.users.gert = {
     isNormalUser = true;
     description = "gert";
@@ -61,12 +66,13 @@
       kdePackages.kate
     ];
   };
-
-  programs.firefox.enable = true;
+  users.users."gert".openssh.authorizedKeys.keys = [
+    (builtins.readFile ./ssh-keys/gert.pub)
+  ];
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git
+    neovim git chromium
   ];
   services.openssh = {
           enable = true;
@@ -80,9 +86,6 @@
         };
   };
   security.sudo.wheelNeedsPassword = false;
-  users.users."gert".openssh.authorizedKeys.keys = [
-    (builtins.readFile ./ssh-keys/gert.pub)
-  ];
   networking.firewall.allowedTCPPorts = [ 22 ];
   system.stateVersion = "25.05";
   # disable powermanagement
