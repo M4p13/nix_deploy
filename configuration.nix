@@ -77,7 +77,7 @@
         };
   };
   users.users."gert".openssh.authorizedKeys.keyFiles = [
-    "./ssh-keys/gert.pub"
+    (builtins.readFile ./ssh-keys/gert.pub)
   ];
   networking.firewall.allowedTCPPorts = [ 22 ];
   system.stateVersion = "25.05";
