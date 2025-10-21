@@ -76,7 +76,7 @@
                   PermitRootLogin = "no";
         };
   };
-  users.users."gert".openssh.authorizedKeys.keyFiles = [
+  users.users."gert".openssh.authorizedKeys.keys = [
     (builtins.readFile ./ssh-keys/gert.pub)
   ];
   networking.firewall.allowedTCPPorts = [ 22 ];
