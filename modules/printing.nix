@@ -2,8 +2,8 @@
 
 let
   cupsPrinterDriver = pkgs.stdenv.mkDerivation {
-    name = "cups-printer-driver";
-    src = "../addons/toshiba-tec.deb"; 
+    name = "cups-toshiba-tec";
+    src = ../addons/toshiba-tec.deb; 
     nativeBuildInputs = [ pkgs.dpkg ];
     unpackPhase = ''
       dpkg-deb -x $src .
