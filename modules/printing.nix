@@ -11,6 +11,7 @@ let
     
     buildInputs = with pkgs; [
       cups
+      libusb1          # <-- This is the missing dependency!
       stdenv.cc.cc.lib
       glibc
     ];
@@ -55,5 +56,4 @@ in
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="08a6", ATTR{idProduct}=="b003", MODE="0666", GROUP="lp"
   '';
-  
 }
