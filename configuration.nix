@@ -64,7 +64,7 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim
+    neovim git
   ];
   services.openssh = {
           enable = true;
