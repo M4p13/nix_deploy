@@ -53,7 +53,7 @@
   users.users.gert = {
     isNormalUser = true;
     description = "gert";
-    hashedPassword = null;
+    hashedPassword = "!";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
