@@ -4,12 +4,12 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./host.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.
-  networking.hostName = "nixos-1";
+  #networking.hostName = "nixos-1"; # this should be set from somewhere else
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Tallinn";
