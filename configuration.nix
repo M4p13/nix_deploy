@@ -3,8 +3,8 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
-      ./host.nix
+      /etc/nixos/hardware-configuration.nix
+      /etc/nixos/host.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
