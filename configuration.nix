@@ -66,7 +66,7 @@
   ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git chromium x11vnc libreoffice usbutils libusb
+    neovim git chromium x11vnc libreoffice usbutils libusb1
   ];
   systemd.user.services.x11vnc = {
     description = "X11 VNC server";
