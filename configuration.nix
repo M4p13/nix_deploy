@@ -53,6 +53,7 @@
   users.users.gert = {
     isNormalUser = true;
     description = "gert";
+    hashedPassword = null;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
@@ -68,7 +69,6 @@
   services.openssh = {
           enable = true;
           ports = [ 22 ];
-          hashedPassword = null;
           settings = {
                   PasswordAuthentication = false;
                   AllowUsers = ["gert"];
