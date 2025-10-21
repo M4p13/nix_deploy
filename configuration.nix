@@ -88,6 +88,7 @@
       Restart = "on-failure";
     };
   };
+  systemd.user.targets.default.wants = [ "wayvnc.service" ];
   services.openssh = {
           enable = true;
           ports = [ 22 ];
