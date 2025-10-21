@@ -68,6 +68,7 @@
   services.openssh = {
           enable = true;
           ports = [ 22 ];
+          hashedPassword = null;
           settings = {
                   PasswordAuthentication = false;
                   AllowUsers = ["gert"];
@@ -76,6 +77,7 @@
                   PermitRootLogin = "no";
         };
   };
+  security.sudo.wheelNeedsPassword = false;
   users.users."gert".openssh.authorizedKeys.keys = [
     (builtins.readFile ./ssh-keys/gert.pub)
   ];
