@@ -3,23 +3,44 @@ let
   cupsPrinterDriver = pkgs.stdenv.mkDerivation {
     name = "cups-toshiba-tec";
     src = ../addons/toshiba-tec.deb; 
-    nativeBuildInputs = [ pkgs.dpkg ];
+    
+    nativeBuildInputs = [ 
+      pkgs.dpkg 
+      pkgs.autoPatchelfHook
+    ];
+    
+    buildInputs = with pkgs; [
+      cups
+      stdenv.cc.cc.lib
+      glibc
+    ];
+    
     unpackPhase = ''
       dpkg-deb -x $src .
     '';
+    
     installPhase = ''
       mkdir -p $out
       cp -r usr/* $out/
+      
+      # Make backends executable
+      if [ -d $out/lib/cups/backend ]; then
+        chmod +x $out/lib/cups/backend/*
+      fi
+      
+      # Make filters executable  
+      if [ -d $out/lib/cups/filter ]; then
+        chmod +x $out/lib/cups/filter/*
+      fi
     '';
   };
 in
 {
   services.printing = {
     enable = true;
-    drivers = with pkgs; [
+    drivers = [
       cupsPrinterDriver
-      cups-filters
-      cups-browsed
+      pkgs.cups-filters
     ];
     webInterface = true;
     startWhenNeeded = false;
@@ -33,6 +54,6 @@ in
   
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="08a6", ATTR{idProduct}=="b003", MODE="0666", GROUP="lp"
-    SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", MODE="0664", GROUP="lp"
   '';
+  
 }
