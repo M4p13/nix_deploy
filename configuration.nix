@@ -56,7 +56,7 @@
     isNormalUser = true;
     description = "gert";
     hashedPassword = null;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "lp" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
