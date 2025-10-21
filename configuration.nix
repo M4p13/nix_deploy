@@ -77,8 +77,17 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git chromium
+    neovim git chromium wayvnc
   ];
+  systemd.user.services.wayvnc = {
+    description = "Wayland VNC server";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.wayvnc}/bin/wayvnc 0.0.0.0 5900";
+      Restart = "on-failure";
+    };
+  };
   services.openssh = {
           enable = true;
           ports = [ 22 ];
