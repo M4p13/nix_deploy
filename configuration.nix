@@ -49,11 +49,13 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  
+  users.mutableUsers = false;
 
   users.users.gert = {
     isNormalUser = true;
     description = "gert";
-    hashedPassword = "!";
+    hashedPassword = null;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
