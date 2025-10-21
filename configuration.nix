@@ -84,7 +84,7 @@
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.wayvnc}/bin/wayvnc 0.0.0.0 5900";
+      ExecStart = "${pkgs.wayvnc}/bin/wayvnc --enable-auth=false 127.0.0.1 5900";
       Restart = "on-failure";
     };
   };
