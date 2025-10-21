@@ -9,8 +9,13 @@
     ];
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = 0; # dont show boot options
   boot.loader.efi.canTouchEfiVariables = true;
   networking.networkmanager.enable = true;
+  boot.plymouth = {
+    enable = true;
+    theme = "breeze";  # or "spinner", "script", "solar", etc.
+  };
 
   time.timeZone = "Europe/Tallinn";
 
