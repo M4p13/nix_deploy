@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   cupsPrinterDriver = pkgs.stdenv.mkDerivation {
     name = "cups-toshiba-tec";
