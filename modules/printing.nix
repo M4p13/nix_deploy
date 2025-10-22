@@ -52,6 +52,9 @@ in
     nssmdns4 = true;
     openFirewall = true;
   };
+  environment.etc = {
+    "cups/model/cabsquix6p300.ppd".source = ../addons/cabsquix6p300.ppd;
+  };
   
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="08a6", ATTR{idProduct}=="b003", MODE="0666", GROUP="lp"
