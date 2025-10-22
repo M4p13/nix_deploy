@@ -68,14 +68,13 @@
   environment.systemPackages = with pkgs; [
     neovim git chromium x11vnc libreoffice usbutils libusb1
   ];
-  systemd.user.services.x11vnc = {
-    description = "X11 VNC server";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -nopw -localhost -forever";
-      Restart = "on-failure";
-    };
+  services.x11vnc = {
+    enable = true;
+    display = 0;
+    autoStart = true;
+    passwordFile = null;  # no password (use with SSH tunnel!)
+      localhost = true;     # only accept local connections
+      shared = true;        # allow multiple viewers
   };
   systemd.user.targets.default.wants = [ "x11vnc.service" ];
   services.openssh = {
