@@ -52,6 +52,10 @@
     description = "kasutaja";
     hashedPassword = "$y$j9T$iWI/Xzoi8ef7GD5SeUuZu.$zPR4fIftnM9s/PCTPhk9KjbTNCD.ciGwedSZ6AFhw1A";
   };
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "kasutaja";
+  };
   users.users.gert = {
     isNormalUser = true;
     description = "gert";
