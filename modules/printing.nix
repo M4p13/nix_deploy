@@ -42,6 +42,7 @@ in
     drivers = [
       cupsPrinterDriver
       pkgs.cups-filters
+      (writeTextDir "share/cups/model/cabsquix6p300.ppd" (builtins.readFile ../addons/cabsquix6p300.ppd))
     ];
     webInterface = true;
     startWhenNeeded = false;
@@ -51,12 +52,6 @@ in
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
-  };
-  environment.etc = {
-  "cups/model/cabsquix6p300.ppd" = {
-  source = ../addons/cabsquix6p300.ppd;
-  mode = "0644";
-  };
   };
   
   services.udev.extraRules = ''
