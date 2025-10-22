@@ -66,20 +66,11 @@
   ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git chromium tigervnc libreoffice usbutils libusb1
+    neovim git chromium libreoffice usbutils libusb1
   ];
-  systemd.user.services.vncserver = {
-    description = "TigerVNC Server";
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "${pkgs.tigervnc}/bin/vncserver :1 -geometry 1920x1080 -depth 24 -SecurityTypes None";
-      ExecStop = "${pkgs.tigervnc}/bin/vncserver -kill :1";
-      Restart = "on-failure";
-    };
-  };
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
 
   services.openssh = {
           enable = true;
