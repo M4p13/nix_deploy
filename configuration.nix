@@ -66,21 +66,21 @@
   ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git chromium x11vnc libreoffice usbutils libusb1
+    neovim git chromium tigervnc libreoffice usbutils libusb1
   ];
-  systemd.services.x11vnc = {
-    description = "X11 VNC Server";
-    after = [ "display-manager.service" ];
-    wantedBy = [ "multi-user.target" ];
+  systemd.user.services.vncserver = {
+    description = "TigerVNC Server";
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
 
     serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -auth guess -forever -loop -repeat -shared";
+      Type = "forking";
+      ExecStart = "${pkgs.tigervnc}/bin/vncserver :1 -geometry 1920x1080 -depth 24";
+      ExecStop = "${pkgs.tigervnc}/bin/vncserver -kill :1";
       Restart = "on-failure";
-      RestartSec = "3s";
     };
   };
-  systemd.user.targets.default.wants = [ "x11vnc.service" ];
+
   services.openssh = {
           enable = true;
           ports = [ 22 ];
