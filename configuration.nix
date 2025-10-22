@@ -50,7 +50,7 @@
   users.users.kasutaja = {
     isNormalUser = true;
     description = "kasutaja";
-    hashedPassword = "$y$j9T$iWI/Xzoi8ef7GD5SeUuZu.$zPR4fIftnM9s/PCTPhk9KjbTNCD.ciGwedSZ6AFhw1A";
+    hashedPassword = "";
   };
   services.displayManager.autoLogin = {
     enable = true;
