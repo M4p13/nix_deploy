@@ -53,7 +53,10 @@ in
     openFirewall = true;
   };
   environment.etc = {
-    "cups/model/cabsquix6p300.ppd".source = ../addons/cabsquix6p300.ppd;
+  "cups/model/cabsquix6p300.ppd" = {
+  source = ../addons/cabsquix6p300.ppd;
+  mode = "0644";
+  };
   };
   
   services.udev.extraRules = ''
