@@ -75,7 +75,7 @@
 
     serviceConfig = {
       Type = "forking";
-      ExecStart = "${pkgs.tigervnc}/bin/vncserver :1 -geometry 1920x1080 -depth 24";
+      ExecStart = "${pkgs.tigervnc}/bin/vncserver :1 -geometry 1920x1080 -depth 24 -SecurityTypes None";
       ExecStop = "${pkgs.tigervnc}/bin/vncserver -kill :1";
       Restart = "on-failure";
     };
