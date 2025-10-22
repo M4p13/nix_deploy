@@ -42,7 +42,7 @@ in
     drivers = [
       cupsPrinterDriver
       pkgs.cups-filters
-      (writeTextDir "share/cups/model/cabsquix6p300.ppd" (builtins.readFile ../addons/cabsquix6p300.ppd))
+      (pkgs.writeTextDir "share/cups/model/cabsquix6p300.ppd" (builtins.readFile ../addons/cabsquix6p300.ppd))
     ];
     webInterface = true;
     startWhenNeeded = false;
