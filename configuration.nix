@@ -99,5 +99,4 @@
 
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";
-  security.pam.services.login.enableKwallet = false;
 }
