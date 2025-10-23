@@ -74,14 +74,19 @@
   environment.systemPackages = with pkgs; [
     neovim git chromium libreoffice usbutils libusb1 x11vnc wayvnc
   ];
-  systemd.services.x11vnc = {
+    systemd.services.x11vnc = {
     description = "X11 VNC Server";
-    after = [ "display-manager.service" ];
-    wantedBy = [ "multi-user.target" ];
-
+    after = [ "display-manager.service" "graphical.target" ];
+    wantedBy = [ "graphical.target" ];
+    
+    path = with pkgs; [ gawk nettools xorg.xauth ];  # Add missing utilities
+    
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared";
+      # Run as your user instead of root
+      User = "kasutaja";  # or "gert" - whichever user runs the X session
+      Environment = "DISPLAY=:0";
+      ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -auth guess -forever -shared -noxdamage -repeat -rfbport 5900";
       Restart = "on-failure";
       RestartSec = "10s";
     };
