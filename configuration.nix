@@ -33,6 +33,7 @@
   services.displayManager.sddm.wayland.enable = false;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasmax11";
+  services.desktopManager.plasma6.enableQt5Integration = true;
   services.xserver.xkb = {
     layout = "ee";
     variant = "";
@@ -71,8 +72,20 @@
   ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git chromium libreoffice usbutils libusb1 tigervnc
+    neovim git chromium libreoffice usbutils libusb1 x11vnc wayvnc
   ];
+  systemd.services.x11vnc = {
+    description = "X11 VNC Server";
+    after = [ "display-manager.service" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared";
+      Restart = "on-failure";
+      RestartSec = "10s";
+    };
+  };
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "startplasma-x11";
   services.xrdp.openFirewall = false;
@@ -88,6 +101,7 @@
                   PermitRootLogin = "no";
         };
   };
+
   security.sudo.wheelNeedsPassword = false;
   networking.firewall.allowedTCPPorts = [ 22 ];
   system.stateVersion = "25.05";
