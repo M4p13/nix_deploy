@@ -71,7 +71,7 @@
   ];
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    neovim git chromium libreoffice usbutils libusb1
+    neovim git chromium libreoffice usbutils libusb1 tigervnc
   ];
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "startplasma-x11";
