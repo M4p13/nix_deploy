@@ -5,6 +5,7 @@
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/host.nix
       ./modules/printing.nix
+      ./networking.nix
     ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 0; # dont show boot options
@@ -98,4 +99,5 @@
 
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";
+  security.pam.services.login.enableKwallet = true;
 }
