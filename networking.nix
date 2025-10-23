@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   networking.networkmanager = {
-    enabled = true;
+    enable = true;
     ensureProfiles = {
       environmentFiles = [ /etc/nixos/wifi.env ];
       profiles = {
