@@ -48,6 +48,8 @@ in
     webInterface = true;
     startWhenNeeded = false;
   };
+
+  services.printing.browsed.enable = false;
   
   services.avahi = {
     enable = true;
