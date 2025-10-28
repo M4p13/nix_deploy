@@ -39,6 +39,7 @@ in
 {
   services.printing = {
     enable = true;
+    browsing = false;
     drivers = [
       cupsPrinterDriver
       pkgs.cups-filters
