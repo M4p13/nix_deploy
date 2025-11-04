@@ -109,7 +109,7 @@
           ports = [ 22 ];
           settings = {
                   PasswordAuthentication = false;
-                  AllowUsers = ["gert", "karl"];
+                  AllowUsers = ["gert" "karl"];
                           UseDns = true;
                   X11Forwarding = false;
                   PermitRootLogin = "no";
