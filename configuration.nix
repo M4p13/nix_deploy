@@ -81,7 +81,7 @@
 
   users.users."karl".openssh.authorizedKeys.keys = [
     (builtins.readFile ./ssh-keys/karl.pub)
-  ]
+  ];
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
