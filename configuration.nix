@@ -67,9 +67,22 @@
       kdePackages.kate
     ];
   };
+  users.users.karl = {
+    isNormalUser = true;
+    description = "kompo 1 meister";
+    packages = with pkgs; [
+      kdePackages.kate
+    ];
+  };
+
   users.users."gert".openssh.authorizedKeys.keys = [
     (builtins.readFile ./ssh-keys/gert.pub)
   ];
+
+  users.users."karl".openssh.authorizedKeys.keys = [
+    (builtins.readFile ./ssh-keys/karl.pub)
+  ]
+
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     neovim git chromium libreoffice usbutils libusb1 x11vnc wayvnc cups-filters
@@ -96,7 +109,7 @@
           ports = [ 22 ];
           settings = {
                   PasswordAuthentication = false;
-                  AllowUsers = ["gert"];
+                  AllowUsers = ["gert", "karl"];
                           UseDns = true;
                   X11Forwarding = false;
                   PermitRootLogin = "no";
