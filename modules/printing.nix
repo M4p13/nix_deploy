@@ -49,7 +49,7 @@ in
     logLevel = "debug";
     startWhenNeeded = false;
   };
-
+  services.colord.enable = true;
   services.printing.browsed.enable = false;
   
   services.avahi = {
@@ -60,5 +60,13 @@ in
   
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="08a6", ATTR{idProduct}=="b003", MODE="0666", GROUP="lp"
+  '';
+    security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+        if (action.id == "org.opensuse.cupspkhelper.mechanism.printer-enable" ||
+            action.id == "org.opensuse.cupspkhelper.mechanism.all-edit") {
+            return polkit.Result.YES;
+        }
+    });
   '';
 }
