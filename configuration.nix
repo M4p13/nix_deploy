@@ -69,7 +69,7 @@
   };
   users.users.karl = {
     isNormalUser = true;
-    description = "kompo 1 meister";
+    description = "kompo 2 meister";
     packages = with pkgs; [
       kdePackages.kate
     ];
