@@ -48,6 +48,13 @@ in
     webInterface = true;
     logLevel = "debug";
     startWhenNeeded = false;
+    extraConf = ''
+    <Limit Pause-Printer Resume-Printer Enable-Printer Disable-Printer>
+    AuthType None
+    Order deny,allow
+    Allow from all
+    </Limit>
+    '';
   };
   services.colord.enable = true;
   services.printing.browsed.enable = false;
