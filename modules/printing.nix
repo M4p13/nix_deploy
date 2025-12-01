@@ -64,6 +64,7 @@ in
     security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
         if (action.id == "org.opensuse.cupspkhelper.mechanism.printer-enable" ||
+            action.id == "org.opensuse.cupspkhelper.mechanism.prinder-disable" ||
             action.id == "org.opensuse.cupspkhelper.mechanism.all-edit") {
             return polkit.Result.YES;
         }
