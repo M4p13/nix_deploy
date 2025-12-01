@@ -53,6 +53,7 @@
     isNormalUser = true;
     description = "kasutaja";
     hashedPassword = "";
+    extraGroups = ["lpadmin"];
   };
   services.displayManager.autoLogin = {
     enable = true;
