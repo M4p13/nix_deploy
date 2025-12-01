@@ -63,8 +63,7 @@ in
   '';
     security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
-        if (action.id == "org.opensuse.cupspkhelper.mechanism.printer-enable" ||
-            action.id == "org.opensuse.cupspkhelper.mechanism.all-edit") {
+        if (action.id == "org.opensuse.cupspkhelper.mechanism.printer-enable") {
             return polkit.Result.YES;
         }
     });
